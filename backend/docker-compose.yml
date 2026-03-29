@@ -1,0 +1,42 @@
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: nakama
+      POSTGRES_USER: nakama
+      POSTGRES_PASSWORD: nakama
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  nakama:
+    build: .
+    depends_on:
+      - postgres
+    ports:
+      - "7350:7350"
+      - "7351:7351"
+    volumes:
+      - ./local.yml:/nakama/data/local.yml
+    entrypoint:
+      - /bin/sh
+      - -ecx
+      - |
+        echo "Running DB migrations..."
+
+        until /nakama/nakama migrate up --database.address nakama:nakama@postgres:5432/nakama; do
+          echo "Waiting for Postgres..."
+          sleep 2
+        done
+
+        echo "Starting Nakama server..."
+
+        exec /nakama/nakama \
+          --database.address nakama:nakama@postgres:5432/nakama \
+          --config /nakama/data/local.yml \
+          --socket.server_key "server-secret"
+
+
+volumes:
+  pgdata:

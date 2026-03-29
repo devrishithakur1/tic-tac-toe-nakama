@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    @apply bg-gray-900 text-white font-sans antialiased min-h-screen relative;
+    background-image: radial-gradient(circle at top right, #1f2937, #0f172a);
+  }
+}
+
+.glass-panel {
+  @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+.cell-x {
+  @apply text-blue-400 scale-100 transition-transform;
+  filter: drop-shadow(0 0 8px rgba(96, 165, 250, 0.8));
+}
+
+.cell-o {
+  @apply text-rose-400 scale-100 transition-transform;
+  filter: drop-shadow(0 0 8px rgba(251, 113, 133, 0.8));
+}

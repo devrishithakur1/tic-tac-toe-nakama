@@ -1,0 +1,11 @@
+name: nakama-node
+
+logger:
+  level: INFO
+
+runtime:
+  path: "/nakama/data/modules"
+
+console:
+  username: admin
+  password: password123
