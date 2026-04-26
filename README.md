@@ -4,7 +4,6 @@ A real-time multiplayer Tic-Tac-Toe game built with [Nakama](https://heroiclabs.
 
 **Source code:** https://github.com/devrishithakur1/tic-tac-toe-nakama
 
-**Live game:** `https://devrishi-tic-tac-toe.duckdns.org/`
 
 ---
 
